@@ -4,14 +4,18 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import Footer from "home/Footer";
 const Header = React.lazy(()=>  import ("home/Header"));
+import SafeComponent from "./SafeComponent";
 
 const App = () => {
 
   const [showHeader, setShowHeader] = useState(false);
 
   return (<div className="text-3xl mx-auto max-w-6xl">
-   { showHeader && <Suspense fallback= {<div>Loading</div>}>
-    <Header/>
+   { showHeader &&
+    <Suspense fallback= {<div>Loading</div>}>
+      <SafeComponent>
+     <Header/>
+     </SafeComponent>
     </Suspense>
 }
 <button className="text-3xl p-5"
